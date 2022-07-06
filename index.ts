@@ -1,6 +1,6 @@
 // Создаем простой сервер через библиотеку express
 
-import express from "express";
+import express, { Request, Response, NextFunction } from "express";
 import { userRouter } from "./users/users.js";
 
 const port = 8000;
@@ -52,7 +52,7 @@ app.use("/users", userRouter);
 
 // Обработка ошибки 
 
-app.use((error, req, res, next) => {
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
     console.log(error.message)
     res.status(500).send(error.message)
 })
