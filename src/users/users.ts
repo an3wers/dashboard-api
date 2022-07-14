@@ -11,6 +11,7 @@ userRouter.use((req, res, next) => {
 userRouter.post('/login', (req, res) => {
     res.send('login')
 })
+
 userRouter.post('/register', (req, res) => {
     res.send('register')
 })

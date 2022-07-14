@@ -7,30 +7,6 @@ const port = 8000;
 
 const app = express();
 
-// Middleware
-// app.all("/hello", (req, res, next) => {
-//   console.log("All");
-//   next();
-// });
-
-// const cb = (req, res, next) => {
-//   console.log("CB");
-//   next();
-// };
-
-// app.route("/user").get("/hello", (req, res) => {
-//         res.send("Hello get!");
-//     })
-
-//  Способ на один ройт подвесить несколько методов
-// app.route("/hello")
-//     .get((req, res) => {
-//         res.send('Hello get')
-//     })
-//     .post((req, res) => {
-//         res.send('Hello post')
-//     })
-
 app.use((req, res, next) => {
   console.log("Время: ", Date.now());
   next();
