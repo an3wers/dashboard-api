@@ -1,74 +1,76 @@
-let a: number = 5;
-let b: string = "string";
-let c: boolean = true;
-let d = "10";
+import 'reflect-metadata';
 
-let n = null;
-let u = undefined;
+const a: number = 5;
+const b: string = 'string';
+const c: boolean = true;
+const d = '10';
 
-let ad: number = a + Number(d);
+const n = null;
+const u = undefined;
+
+const ad: number = a + Number(d);
 
 //  Массивы
-const names: string[] = ["John", "Tom"];
+const names: string[] = ['John', 'Tom'];
 const nums: number[] = [5, 6];
 
 // Кортэжи tupls
-const tupl: [number, string] = [5, "string"];
+const tupl: [number, string] = [5, 'string'];
 
 // Any
 let e: any = 67;
-e = "wer";
+e = 'wer';
 
-const anyArray: any[] = [6, "sdf", false];
+const anyArray: any[] = [6, 'sdf', false];
 
 // Функции
 
 function greet(name: string): string {
-  return name + "Hi";
+	return name + 'Hi';
 }
 
 // Объектные типы
 
 function coords(coord: { lat: number; long?: number }) {
-  return coord;
+	return coord;
 }
 
 coords({ lat: 5, long: 6 });
 
 // Union tupes
-let universalId: string | number = "10";
+let universalId: string | number = '10';
 universalId = 12;
 
 function printId(id: number | string) {
-  if (typeof id == "string") {
-    console.log(id.toLocaleUpperCase());
-  } else {
-    console.log(id);
-  }
+	if (typeof id == 'string') {
+		console.log(id.toLocaleUpperCase());
+	} else {
+		console.log(id);
+	}
 }
 
 function helloUser(user: string | string[]) {
-  if (Array.isArray(user)) {
-    user.map((el) => el);
-  } else {
-    console.log(user);
-  }
+	if (Array.isArray(user)) {
+		user.map((el) => el);
+	} else {
+		console.log(user);
+	}
 }
 
 // Type Aliase and Interface
 
 type Coord = {
-  lat: number;
-  long: number;
+	lat: number;
+	long: number;
 };
 
 interface ICoord {
-  lat: number;
-  long: number;
+	lat: number;
+	long: number;
 }
 
 function compute(coord: ICoord) {
-  return coord;
+	return coord;
 }
 
 compute({ lat: 7, long: 10 });
@@ -77,7 +79,7 @@ compute({ lat: 7, long: 10 });
 type ID = number | string;
 
 function printId2(id: ID) {
-  console.log(id);
+	console.log(id);
 }
 
 printId2(100);
@@ -85,137 +87,183 @@ printId2(100);
 const objArray: object[] = [{}, {}];
 
 interface IAnimal {
-  name: string;
+	name: string;
 }
 
 interface IDog extends IAnimal {
-  age: number;
+	age: number;
 }
 
 const jhony: IDog = {
-  name: "Jhony",
-  age: 4,
+	name: 'Jhony',
+	age: 4,
 };
 
 jhony.name;
 
 type Car = {
-  model?: string;
-  age?: number;
+	model?: string;
+	age?: number;
 };
 
 type BMW = Car & {
-  color: string;
+	color: string;
 };
 
 const myBmw: BMW = {
-  color: "black",
+	color: 'black',
 };
 
 // Литералы
 
-type Direction = "left" | "right";
+type Direction = 'left' | 'right';
 
 function moveDog(direcion: Direction) {
-  // console.log('dog move', direcion)
-  switch (direcion) {
-    case "left":
-      return -1;
-    case "right":
-      return 1;
-    default:
-      return 0;
-  }
+	// console.log('dog move', direcion)
+	switch (direcion) {
+		case 'left':
+			return -1;
+		case 'right':
+			return 1;
+		default:
+			return 0;
+	}
 }
 
-moveDog("right");
+moveDog('right');
 
 interface IConnection {
-  host: string;
-  port: number;
+	host: string;
+	port: number;
 }
 
-function connect(connection: IConnection | "deafult") {}
+function connect(connection: IConnection | 'deafult') {}
 
-connect("deafult");
+connect('deafult');
 
 // Enum
 
 enum Direction2 {
-  Left,
-  Right,
+	Left,
+	Right,
 }
 
 // Generics
 
 function log<T>(obj: T): T {
-  console.log(obj);
-  return obj;
+	console.log(obj);
+	return obj;
 }
 
-log<string>("asd");
+log<string>('asd');
 log<number>(5);
 
 interface HasLength {
-  length: number;
+	length: number;
 }
 
 function log2<T extends HasLength, K>(obj: T, arr: K[]): K[] {
-  obj.length;
+	obj.length;
 
-  console.log(obj);
-  return arr;
+	console.log(obj);
+	return arr;
 }
 
-log2<string, number>("123", [1, 2, 3]);
+log2<string, number>('123', [1, 2, 3]);
 
 interface IUser {
-  name: string;
-  age?: number;
-  bid: <T>(sum: T) => boolean;
+	name: string;
+	age?: number;
+	bid: <T>(sum: T) => boolean;
 }
 
 function bid<T>(sum: T): boolean {
-  return true;
+	return true;
 }
 
 // Class
 
 class CoordClass {
-  lat: number;
-  long: number;
+	lat: number;
+	long: number;
 
-  constructor(lat: number, long: number) {
-    this.lat = lat;
-    this.long = long;
-  }
+	constructor(lat: number, long: number) {
+		this.lat = lat;
+		this.long = long;
+	}
 
-  computeDistance(newLat: number, newLong: number): number {
-    return 0;
-  }
+	computeDistance(newLat: number, newLong: number): number {
+		return 0;
+	}
 }
 
 const point = new CoordClass(10, 8);
 
 class MapLocation extends CoordClass {
-  name: string;
-  constructor(lat: number, long: number, name: string) {
-    super(lat, long);
-  }
+	name: string;
+	constructor(lat: number, long: number, name: string) {
+		super(lat, long);
+	}
 
-  override computeDistance(newLat: number, newLong: number): number {
-    return 1;
-  }
+	override computeDistance(newLat: number, newLong: number): number {
+		return 1;
+	}
 }
 
-const map = new MapLocation(10, 10, "test");
+const map = new MapLocation(10, 10, 'test');
 
 interface loggerService {
-  log: (s: string) => void;
+	log: (s: string) => void;
 }
 
 class Logger implements loggerService {
-  log(str: string) {
-    console.log(str);
-  }
+	log(str: string) {
+		console.log(str);
+	}
 }
+
+// Декораторы
+
+function Component(id: number) {
+	console.log('init component');
+	return (target: Function) => {
+		target.prototype.id = id;
+	};
+}
+
+function DLogger() {
+	console.log('init logger');
+	return (target: Function) => {
+		console.log('run logger');
+	};
+}
+
+function Method(target: Object, proppertyKey: string, propertyDescriptor: PropertyDescriptor) {
+	console.log(proppertyKey);
+	propertyDescriptor.value = function (...args: any[]) {
+		return args[0] * 10;
+	};
+}
+
+@DLogger()
+@Component(5)
+export class User {
+	id: number;
+
+	@Method
+	updateId(newId: number) {
+		this.id = newId;
+		return this.id;
+	}
+}
+
+// Define metadata
+
+function Test(target: Function) {
+	Reflect.defineMetadata('a', 1, target);
+	const meta = Reflect.getMetadata('a', target);
+	console.log('meta', meta);
+}
+
+@Test
+class C {}
