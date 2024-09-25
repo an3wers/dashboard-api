@@ -238,6 +238,14 @@ function DLogger() {
 	};
 }
 
+/**
+ * Decorator to multiply the first argument of a method by 10
+ * @param {Object} target The prototype of the class
+ * @param {string} proppertyKey The name of the method
+ * @param {PropertyDescriptor} propertyDescriptor The property descriptor of the method
+ * @returns {void}
+ */
+
 function Method(target: Object, proppertyKey: string, propertyDescriptor: PropertyDescriptor) {
 	console.log(proppertyKey);
 	propertyDescriptor.value = function (...args: any[]) {
