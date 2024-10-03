@@ -22,7 +22,7 @@ export class User {
 		return this._password;
 	}
 
-	public async setPassword(password: string, salt: number) {
+	public async setPassword(password: string, salt: number): Promise<void> {
 		this._password = await hash(password, salt);
 	}
 
