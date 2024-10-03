@@ -56,8 +56,14 @@ export class App {
 		this.useMiddlerware();
 		this.useRoutes();
 		this.useExeptionFilters();
+
 		await this.prismaService.connect();
+
 		this.server = this.app.listen(this.port);
 		this.logger.log(`Сервер запушен: http://localhost:${this.port}`);
+	}
+
+	public close() {
+		this.server.close();
 	}
 }

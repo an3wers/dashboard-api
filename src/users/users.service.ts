@@ -17,15 +17,13 @@ export class UserService implements IUserService {
 	) {}
 
 	async createUser({ email, name, password }: UserRegisterDto): Promise<UserModel | null> {
-		const newUser = new User(email, name);
-		const salt = this.configService.get('SALT');
-		await newUser.setPassword(password, Number(salt));
-
 		const existedUser = await this.usersRepository.find(email);
 		if (existedUser) {
 			return null;
 		}
-
+		const newUser = new User(email, name);
+		const salt = this.configService.get('SALT');
+		await newUser.setPassword(password, Number(salt));
 		const createdUser = await this.usersRepository.create(newUser);
 
 		return createdUser;
@@ -41,5 +39,9 @@ export class UserService implements IUserService {
 		const isverified = await verifiedUser.comparePassword(password);
 
 		return isverified;
+	}
+	async getUserInfo(email: string): Promise<UserModel | null> {
+		const findUser = await this.usersRepository.find(email);
+		return findUser;
 	}
 }
